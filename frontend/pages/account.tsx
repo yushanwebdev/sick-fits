@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Account() {
   return (
     <div>
       <p>Account</p>

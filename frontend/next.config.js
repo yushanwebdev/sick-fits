@@ -5,8 +5,8 @@ const nextConfig = {
   compiler: {
     styledComponents: {
       displayName: true,
-    }
-  }
-}
+    },
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
