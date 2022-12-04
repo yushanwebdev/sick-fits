@@ -3,7 +3,7 @@ import { Router } from 'next/router';
 import NProgress from 'nprogress';
 import Page from '../components/Page';
 
-import 'nprogress/nprogress.css';
+import '../components/styles/nprogress.css';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 Router.events.on('routeChangeStart', () => NProgress.start());
