@@ -1,10 +1,17 @@
-import 'styled-components'
+import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary: string
-      secondary: string
-    }
+      red: string;
+      black: string;
+      grey: string;
+      gray: string;
+      lightGrey: string;
+      lightGray: string;
+      offWhite: string;
+      maxWidth: string;
+      bs: string;
+    };
   }
 }
