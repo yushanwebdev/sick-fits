@@ -9,4 +9,3 @@ variables.env
 *.env
 .keystone
 *.db
-backend-old/*
