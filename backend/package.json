@@ -1,17 +1,26 @@
 {
-  "name": "keystone-app",
-  "version": "1.0.2",
+  "name": "@keystonejs/example-projects-blank",
+  "description": "A blank KeystoneJS starter project.",
   "private": true,
+  "version": "5.0.21",
+  "author": "The KeystoneJS Development Team",
+  "repository": "https://github.com/keystonejs/keystone-5/tree/main/packages/create-keystone-5-app/example-projects/blank",
+  "homepage": "https://github.com/keystonejs/keystone-5",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "scripts": {
-    "dev": "keystone dev",
-    "start": "keystone start",
-    "build": "keystone build",
-    "postinstall": "keystone postinstall"
+    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
+    "build": "cross-env NODE_ENV=production keystone build",
+    "start": "cross-env NODE_ENV=production keystone start",
+    "create-tables": "cross-env keystone create-tables"
   },
   "dependencies": {
-    "@keystone-6/auth": "^5.0.1",
-    "@keystone-6/core": "^3.1.2",
-    "@keystone-6/fields-document": "^5.0.2",
-    "typescript": "^4.8.0"
+    "@keystonejs/adapter-mongoose": "^11.2.2",
+    "@keystonejs/app-admin-ui": "^7.5.2",
+    "@keystonejs/app-graphql": "^6.3.2",
+    "@keystonejs/keystone": "^19.3.3",
+    "cross-env": "^7.0.3"
   }
 }
