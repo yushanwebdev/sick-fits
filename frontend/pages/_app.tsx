@@ -1,7 +1,15 @@
+import {
+  ApolloClient,
+  ApolloProvider,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import type { AppProps } from 'next/app';
 import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
 import Header from '../components/Header';
 import GlobalStyle from '../components/styles/globalstyles';
+import withData from '../lib/withData';
+
+type AppOwnProps = { apollo: ApolloClient<NormalizedCacheObject> };
 
 const theme: DefaultTheme = {
   colors: {
@@ -27,8 +35,8 @@ const InnerStyles = styled.div`
   padding: 2rem;
 `;
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
+const MyApp = ({ Component, pageProps, apollo }: AppProps & AppOwnProps) => (
+  <ApolloProvider client={apollo}>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Header />
@@ -36,5 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </InnerStyles>
     </ThemeProvider>
-  );
-}
+  </ApolloProvider>
+);
+
+export default withData(MyApp);
