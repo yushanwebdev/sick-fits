@@ -4,10 +4,14 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 import type { AppProps } from 'next/app';
+import { Router } from 'next/router';
 import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
+import NProgress from 'nprogress';
 import Header from '../components/Header';
 import GlobalStyle from '../components/styles/globalstyles';
 import withData from '../lib/withData';
+
+import '../components/styles/nprogress.css';
 
 type AppOwnProps = { apollo: ApolloClient<NormalizedCacheObject> };
 
@@ -34,6 +38,10 @@ const InnerStyles = styled.div`
   margin: 0 auto;
   padding: 2rem;
 `;
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp = ({ Component, pageProps, apollo }: AppProps & AppOwnProps) => (
   <ApolloProvider client={apollo}>
