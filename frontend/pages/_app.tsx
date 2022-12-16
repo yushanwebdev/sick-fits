@@ -1,19 +1,13 @@
-import {
-  ApolloClient,
-  ApolloProvider,
-  NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
 import { Router } from 'next/router';
 import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
 import NProgress from 'nprogress';
 import Header from '../components/Header';
 import GlobalStyle from '../components/styles/globalstyles';
-import withData from '../lib/withData';
+import { useApollo } from '../lib/apolloClient';
 
 import '../components/styles/nprogress.css';
-
-type AppOwnProps = { apollo: ApolloClient<NormalizedCacheObject> };
 
 const theme: DefaultTheme = {
   colors: {
@@ -43,16 +37,20 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const MyApp = ({ Component, pageProps, apollo }: AppProps & AppOwnProps) => (
-  <ApolloProvider client={apollo}>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Header />
-      <InnerStyles>
-        <Component {...pageProps} />
-      </InnerStyles>
-    </ThemeProvider>
-  </ApolloProvider>
-);
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const apolloClient = useApollo(pageProps);
 
-export default withData(MyApp);
+  return (
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <InnerStyles>
+          <Component {...pageProps} />
+        </InnerStyles>
+      </ThemeProvider>
+    </ApolloProvider>
+  );
+};
+
+export default MyApp;
