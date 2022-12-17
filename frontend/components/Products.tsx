@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components';
+import { IProduct } from '../types';
 import Product from './Product';
 
 export const ALL_PRODUCTS_QUERY = gql`
@@ -29,7 +30,9 @@ export default function Products() {
   // TODO: fix this error
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data, loading, error } = useQuery(ALL_PRODUCTS_QUERY);
+  const { data, loading, error } = useQuery<{ allProducts: IProduct[] }>(
+    ALL_PRODUCTS_QUERY
+  );
 
   if (loading) {
     return <p>Loading...</p>;

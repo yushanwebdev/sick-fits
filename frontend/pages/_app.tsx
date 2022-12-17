@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
 import { Router } from 'next/router';

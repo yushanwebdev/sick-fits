@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
+import { IProduct } from '../types';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import TitleStyles from './styles/TitleStyles';
 
-export default function Product({ product }) {
+interface IProductProps {
+  product: IProduct;
+}
+
+export default function Product({ product }: IProductProps) {
   return (
     <ItemStyles>
       <img
