@@ -14,3 +14,7 @@ export interface IProduct {
   photo: IPhoto;
   __typename: string;
 }
+
+export interface ICreateProductForm {
+  name: string;
+}
