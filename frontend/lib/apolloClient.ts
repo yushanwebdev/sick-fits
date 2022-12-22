@@ -5,8 +5,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 // TODO: Fix the type issues
-import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, from, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { createUploadLink } from 'apollo-upload-client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 import { useMemo } from 'react';
@@ -29,15 +30,17 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     console.log(`[Network error]: ${JSON.stringify(networkError)}`);
 });
 
-const httpLink = new HttpLink({
+const uploadLink = createUploadLink({
   uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint, // Server URL (must be absolute)
-  credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+  fetchOptions: {
+    credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+  },
 });
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: from([errorLink, httpLink]),
+    link: from([errorLink, uploadLink]),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
