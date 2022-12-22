@@ -4,16 +4,18 @@ export default function useForm<T = Record<string, string>>(initial: T) {
   // create a state object for our inputs
   const [inputs, setInputs] = useState(initial);
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { value, name, type } = e.target;
-    let localValue: string | number | FileList = value;
+    let localValue: string | number | File = value;
 
     if (type === 'number') {
       localValue = parseInt(value);
     }
 
     if (type === 'file') {
-      localValue[0] = e.target.files;
+      [localValue] = (e.target as HTMLInputElement).files;
     }
 
     setInputs({
