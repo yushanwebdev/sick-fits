@@ -38,11 +38,16 @@ export default function useForm<T = Record<string, string>>(initial: T) {
     setInputs(blankState);
   }
 
+  function updateForm(data: T) {
+    setInputs(data);
+  }
+
   // return the things we want to surface from this custom hook
   return {
     inputs,
     handleChange,
     resetForm,
     clearForm,
+    updateForm,
   };
 }

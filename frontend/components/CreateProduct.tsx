@@ -8,7 +8,7 @@ import DisplayError from './DisplayError';
 import Form from './styles/Form';
 
 const CREATE_PRODUCT_MUTATION = gql`
-  mutation CREATE_PRODUCT_MUTATION(
+  mutation CreateProduct(
     # Which variables are getting passed in? And what types are they
     $name: String!
     $description: String!
