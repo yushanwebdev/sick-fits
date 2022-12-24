@@ -14,8 +14,8 @@
 
 ### _Frontend_
 
-### `yarn build`
+### `yarn run dev`
 
 ### _Backend_
 
-### `npm start`
+### `npm run dev`
