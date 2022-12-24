@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
 import { IProduct } from '../types';
+import DeleteProduct from './DeleteProduct';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import TitleStyles from './styles/TitleStyles';
@@ -32,6 +33,7 @@ export default function Product({ product }: IProductProps) {
         >
           Edit ✏️
         </Link>
+        <DeleteProduct id={product.id}>Delete</DeleteProduct>
       </div>
     </ItemStyles>
   );
