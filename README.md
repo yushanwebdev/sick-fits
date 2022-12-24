@@ -1,4 +1,4 @@
-# sick-fits
+# Sick Fits
 
 ## Install Dependencies
 
