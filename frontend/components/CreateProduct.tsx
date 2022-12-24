@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { gql, useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 import useForm from '../lib/useForm';
 import DisplayError from './DisplayError';
 import Form from './styles/Form';
@@ -29,6 +33,7 @@ const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function CreateProduct() {
+  const router = useRouter();
   const { inputs, handleChange, clearForm } = useForm<{
     image: string;
     name: string;
@@ -40,7 +45,7 @@ export default function CreateProduct() {
     price: 34234,
     description: 'These are the best shoes!',
   });
-  const [createProduct, { loading, error, data }] = useMutation(
+  const [createProduct, { loading, error }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
@@ -57,6 +62,10 @@ export default function CreateProduct() {
           const res = await createProduct();
 
           clearForm();
+
+          router.push({
+            pathname: `/product/${res.data.createProduct.id}`,
+          });
         } catch (errorRequest) {
           console.error('error', (errorRequest as Error).message);
         }
