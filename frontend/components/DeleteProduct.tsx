@@ -1,12 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { gql, useMutation } from '@apollo/client';
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
+      id
       name
     }
   }
 `;
+
+function update(cache, payload) {
+  console.log('payload', payload);
+  console.log('running the update function after delete');
+  cache.evict(cache.identify(payload.data.deleteProduct));
+}
 
 export default function DeleteProduct({
   id,
@@ -15,8 +24,9 @@ export default function DeleteProduct({
   id: string;
   children: React.ReactNode;
 }) {
-  const [deleteProduct, { loading }] = useMutation(DELETE_PRODUCT_MUTATION, {
+  const [deleteProduct] = useMutation(DELETE_PRODUCT_MUTATION, {
     variables: { id },
+    update,
   });
 
   return (
