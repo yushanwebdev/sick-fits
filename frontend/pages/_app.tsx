@@ -6,7 +6,7 @@ import { Router } from 'next/router';
 import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
 import NProgress from 'nprogress';
 import Header from '../components/Header';
-import GlobalStyle from '../components/styles/globalstyles';
+import GlobalStyle from '../components/styles/GlobalStyles';
 import { useApollo } from '../lib/apolloClient';
 
 import '../components/styles/nprogress.css';
