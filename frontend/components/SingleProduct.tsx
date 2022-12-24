@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { gql, useQuery } from '@apollo/client';
@@ -57,7 +58,7 @@ export default function SingleProduct({ id }: ISingleProductProps) {
   return (
     <ProductStyles>
       <Head>
-        <title>Sick Fits | {Product.name}</title>
+        <title>{`Sick Fits | ${Product.name}`}</title>
       </Head>
       <img
         src={Product.photo.image.publicUrlTransformed}
