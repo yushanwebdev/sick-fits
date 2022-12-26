@@ -13,7 +13,7 @@ interface IPaginationProps {
   page: number;
 }
 
-const PAGINATION_QUERY = gql`
+export const PAGINATION_QUERY = gql`
   query ProductCount {
     _allProductsMeta {
       count
@@ -39,7 +39,7 @@ export default function Pagination({ page }: IPaginationProps) {
   return (
     <PaginationStyles>
       <Head>
-        <title>{`Sick Fits - Page ${page} of ___`}</title>
+        <title>{`Sick Fits - Page ${page} of ${productTotal}`}</title>
       </Head>
       <Link href={`/products/${page - 1}`} aria-disabled={page <= 1}>
         ← Prev
