@@ -5,6 +5,7 @@
 import { ALL_PRODUCTS_QUERY } from '../components/Products';
 import { perPage } from '../config';
 import { addApolloState, initializeApollo } from '../lib/apolloClient';
+import { CURRENT_USER_QUERY } from '../lib/useUser';
 import ProductsPage from './products';
 
 export async function getServerSideProps() {
@@ -17,6 +18,10 @@ export async function getServerSideProps() {
         skip: 0,
         first: perPage,
       },
+    });
+
+    await apolloClient.query({
+      query: CURRENT_USER_QUERY,
     });
 
     return addApolloState(apolloClient, {
