@@ -6,12 +6,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 // TODO: Fix the type issues
 import { ApolloClient, from, InMemoryCache } from '@apollo/client';
+import {
+  FieldPolicy,
+  KeyArgsFunction,
+} from '@apollo/client/cache/inmemory/policies';
 import { onError } from '@apollo/client/link/error';
+import { concatPagination, Reference } from '@apollo/client/utilities';
 import { createUploadLink } from 'apollo-upload-client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 import { useMemo } from 'react';
 import { endpoint, prodEndpoint } from '../config';
+import paginationField from './paginationField';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
@@ -44,7 +50,9 @@ function createApolloClient() {
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
-          fields: {},
+          fields: {
+            allProducts: paginationField(),
+          },
         },
       },
     }),
@@ -83,8 +91,12 @@ export function initializeApollo(initialState = null) {
 }
 
 export function addApolloState(client, pageProps) {
-  if (pageProps?.props) {
-    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
+  try {
+    if (pageProps?.props) {
+      pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract() ?? null;
+    }
+  } catch (error) {
+    console.log(error);
   }
 
   return pageProps;
