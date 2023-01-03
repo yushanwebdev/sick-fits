@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -6,12 +7,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 // TODO: Fix the type issues
 import { ApolloClient, from, InMemoryCache } from '@apollo/client';
-import {
-  FieldPolicy,
-  KeyArgsFunction,
-} from '@apollo/client/cache/inmemory/policies';
 import { onError } from '@apollo/client/link/error';
-import { concatPagination, Reference } from '@apollo/client/utilities';
 import { createUploadLink } from 'apollo-upload-client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
@@ -39,7 +35,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const uploadLink = createUploadLink({
   uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint, // Server URL (must be absolute)
   fetchOptions: {
-    credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+    credentials: 'include', // To send the Cookie that stored in the Browser
   },
 });
 
@@ -51,6 +47,7 @@ function createApolloClient() {
       typePolicies: {
         Query: {
           fields: {
+            // @ts-ignore
             allProducts: paginationField(),
           },
         },
