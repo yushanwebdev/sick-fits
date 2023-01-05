@@ -32,7 +32,7 @@ export default function SignIn() {
     email: '',
     password: '',
   });
-  const [signin, { data, loading }] = useMutation(SIGN_IN_MUTATION, {
+  const [signin, { data }] = useMutation(SIGN_IN_MUTATION, {
     variables: inputs,
     // refetch the currently loggedin user
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
