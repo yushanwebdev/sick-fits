@@ -46,10 +46,9 @@ export default function SignIn() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // stop the form from submitting
-    console.log('inputs', inputs);
-    const res = await signin();
-
     // Send the email and password to the graphqlAPI
+    await signin();
+    resetForm();
   };
 
   return (
