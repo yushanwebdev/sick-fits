@@ -19,9 +19,12 @@ export default function RequestReset() {
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
   });
-  const [signup, { data, error }] = useMutation(REQUEST_RESET_MUTATION, {
-    variables: inputs,
-  });
+  const [signup, { data, error, loading }] = useMutation(
+    REQUEST_RESET_MUTATION,
+    {
+      variables: inputs,
+    }
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // stop the form from submitting
@@ -39,7 +42,7 @@ export default function RequestReset() {
         <p>Success! Check your email for a link!</p>
       )}
 
-      <fieldset>
+      <fieldset aria-busy={loading} disabled={loading}>
         <label htmlFor="email">
           Email
           <input
