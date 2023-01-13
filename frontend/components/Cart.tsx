@@ -4,9 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import styled from 'styled-components';
 import calcTotalPrice from '../lib/calcTotalPrice';
+import { useCart } from '../lib/cartState';
 import formatMoney from '../lib/formatMoney';
 import { useUser } from '../lib/useUser';
 import CartStyles from './styles/CartStyles';
+import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
 
 interface CartItemProps {
@@ -63,17 +65,20 @@ function CartItem({ cartItem }: CartItemProps) {
 }
 
 export default function Cart() {
+  const { cartOpen, closeCart } = useCart();
   const me = useUser();
 
   if (!me) return null;
 
-  console.log('me', me);
-
   return (
-    <CartStyles open>
+    <CartStyles open={cartOpen}>
       <header>
         <Supreme>{me.name}'s Cart</Supreme>
+        <CloseButton type="button" onClick={closeCart}>
+          &times;
+        </CloseButton>
       </header>
+
       <ul>
         {me.cart.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />

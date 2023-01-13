@@ -10,6 +10,7 @@ import GlobalStyle from '../components/styles/GlobalStyles';
 import { useApollo } from '../lib/apolloClient';
 
 import '../components/styles/nprogress.css';
+import { CartStateProvider } from '../lib/cartState';
 
 const theme: DefaultTheme = {
   colors: {
@@ -45,11 +46,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <InnerStyles>
-          <Component {...pageProps} />
-        </InnerStyles>
+        <CartStateProvider>
+          <GlobalStyle />
+          <Header />
+          <InnerStyles>
+            <Component {...pageProps} />
+          </InnerStyles>
+        </CartStateProvider>
       </ThemeProvider>
     </ApolloProvider>
   );

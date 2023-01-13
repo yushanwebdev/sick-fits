@@ -31,9 +31,7 @@ export const CURRENT_USER_QUERY = gql`
 `;
 
 export const useUser = () => {
-  const { data, error } = useQuery(CURRENT_USER_QUERY);
-
-  console.log('error', error);
+  const { data } = useQuery(CURRENT_USER_QUERY);
 
   return data?.authenticatedItem;
 };
