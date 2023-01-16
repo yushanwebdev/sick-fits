@@ -27,9 +27,6 @@ const CartStyles = styled.div<{ open: boolean }>`
     border-top: 10px double ${({ theme }) => theme.colors.black};
     margin-top: 2rem;
     padding-top: 2rem;
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
     font-size: 3rem;
     font-weight: 900;
     p {
