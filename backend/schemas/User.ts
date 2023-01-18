@@ -21,5 +21,9 @@ export const User = list({
         },
       },
     }),
+    orders: relationship({
+      ref: 'Order.user',
+      many: true,
+    }),
   },
 });
