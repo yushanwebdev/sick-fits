@@ -9,8 +9,6 @@ import {
   OrderCreateInput,
 } from '../.keystone/schema-types';
 import stripeConfig from '../lib/stripe';
-import StripeConfig from '../lib/stripe';
-import { Session } from '../types';
 
 interface Arguments {
   token: string;
@@ -56,10 +54,10 @@ export default async function checkout(
     `,
   });
 
-  console.log('user', user);
-  console.dir(user, {
-    depth: null,
-  });
+  // console.log('user', user);
+  // console.dir(user, {
+  //   depth: null,
+  // });
   // 2. calc the total price for their order
   const cartItems = user.cart.filter((cartItem) => cartItem.product);
   const amount = cartItems.reduce(function (
@@ -83,6 +81,8 @@ export default async function checkout(
       console.log('err', err);
       throw new Error(err.message);
     });
+
+  console.log('charge', charge);
   // 4. Convert the cartItems to OrderItems
   // 5. Create the order and return it
 }
