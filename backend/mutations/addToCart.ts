@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { KeystoneContext } from '@keystone-next/types';
 import { CartItemCreateInput } from '../.keystone/schema-types';
 import { Session } from '../types';
