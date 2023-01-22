@@ -6,9 +6,9 @@
 import { gql, useQuery } from '@apollo/client';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import DisplayError from '../components/DisplayError';
-import OrderStyles from '../components/styles/OrderStyles';
-import formatMoney from '../lib/formatMoney';
+import DisplayError from '../../components/DisplayError';
+import OrderStyles from '../../components/styles/OrderStyles';
+import formatMoney from '../../lib/formatMoney';
 
 const SINGLE_ORDER_QUERY = gql`
   query SingleOrderQuery($id: ID!) {
@@ -35,7 +35,7 @@ const SINGLE_ORDER_QUERY = gql`
   }
 `;
 
-export default function Order() {
+export default function SingleOrder() {
   const { query } = useRouter();
   const { data, error, loading } = useQuery(SINGLE_ORDER_QUERY, {
     variables: {
