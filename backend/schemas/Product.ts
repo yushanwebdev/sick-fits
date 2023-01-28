@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/unbound-method */
 import { integer, relationship, select, text } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
-import { isSignedIn } from '../access';
+import { isSignedIn, rules } from '../access';
 
 export const Product = list({
   access: {
     create: isSignedIn,
-    read: isSignedIn,
-    update: isSignedIn,
-    delete: isSignedIn,
+    read: rules.canReadProducts,
+    update: rules.canManageProducts,
+    delete: rules.canManageProducts,
   },
   fields: {
     name: text({ isRequired: true }),
@@ -39,6 +41,14 @@ export const Product = list({
         inlineCreate: { fields: ['image', 'altText'] },
         inlineEdit: { fields: ['image', 'altText'] },
       },
+    }),
+    user: relationship({
+      ref: 'User.products',
+      defaultValue: ({ context }) => ({
+        connect: {
+          id: context.session.itemId,
+        },
+      }),
     }),
   },
 });
