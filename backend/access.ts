@@ -47,7 +47,7 @@ export const rules = {
       return true;
     }
 
-    // 2. If not, do they own this item?
+    // 2. If not, do they own this item? (this is like Where clause in the Query)
     return {
       user: {
         id: session.itemId,
@@ -73,12 +73,14 @@ export const rules = {
       return false;
     }
 
+    console.dir(session, { depth: null });
+
     // 1. Do they have the permission of canOrder
     if (permissions.canManageOrders({ session })) {
       return true;
     }
 
-    // 2. If not, do they own this item?
+    // 2. If not, do they own this item? (this is like Where clause in the Query)
     return {
       user: {
         id: session.itemId,
@@ -95,13 +97,25 @@ export const rules = {
       return true;
     }
 
-    // 2. If not, do they own this item?
+    // 2. If not, do they own this item? (this is like Where clause in the Query)
     return {
       order: {
         user: {
           id: session.itemId,
         },
       },
+    };
+  },
+  canManageUsers({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    if (permissions.canManageUsers({ session })) {
+      return true;
+    }
+    // Otherwise they may only update themselves!
+    return {
+      id: session.itemId,
     };
   },
 };
