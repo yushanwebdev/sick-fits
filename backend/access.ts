@@ -38,6 +38,10 @@ export const permissions = {
 // Rules can return a boolean - yes or no - or a filter which limits which products they can CRUD
 export const rules = {
   canManageProducts({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     // 1. Do they have the permission of canManageProducts
     if (permissions.canManageProducts({ session })) {
       return true;
@@ -51,6 +55,10 @@ export const rules = {
     };
   },
   canReadProducts({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     if (permissions.canManageProducts({ session })) {
       return true; // They can read everything
     }
@@ -58,6 +66,42 @@ export const rules = {
     // They should only see available products (based on the status field)
     return {
       status: 'AVAILABLE',
+    };
+  },
+  canOrder({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
+    // 1. Do they have the permission of canOrder
+    if (permissions.canManageOrders({ session })) {
+      return true;
+    }
+
+    // 2. If not, do they own this item?
+    return {
+      user: {
+        id: session.itemId,
+      },
+    };
+  },
+  canManageOrderItems({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
+    // 1. Do they have the permission of canOrder
+    if (permissions.canManageOrders({ session })) {
+      return true;
+    }
+
+    // 2. If not, do they own this item?
+    return {
+      order: {
+        user: {
+          id: session.itemId,
+        },
+      },
     };
   },
 };

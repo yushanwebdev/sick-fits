@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { integer, relationship, text, virtual } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
+import { isSignedIn, rules } from '../access';
 import formatMoney from '../lib/formatMoney';
 
 export const Order = list({
-  // TODO
-  // access
+  access: {
+    create: isSignedIn,
+    read: rules.canOrder,
+    update: () => false,
+    delete: () => false,
+  },
   fields: {
     label: virtual({
       graphQLReturnType: 'String',
