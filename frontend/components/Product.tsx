@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
+import { useUser } from '../lib/useUser';
 import { IProduct } from '../types';
 import AddToCart from './AddToCart';
 import DeleteProduct from './DeleteProduct';
@@ -12,6 +16,23 @@ interface IProductProps {
 }
 
 export default function Product({ product }: IProductProps) {
+  const me = useUser();
+
+  const canManageProductsPermission = me?.role?.canManageProducts;
+
+  const canManageProductsRule = () => {
+    if (!me) {
+      return false;
+    }
+
+    if (canManageProductsPermission) {
+      return true;
+    }
+
+    // @ts-ignore
+    return me.id === product.user?.id;
+  };
+
   return (
     <ItemStyles>
       <img
@@ -23,20 +44,26 @@ export default function Product({ product }: IProductProps) {
       </TitleStyles>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
-      <div className="buttonList">
-        <Link
-          href={{
-            pathname: 'update',
-            query: {
-              id: product.id,
-            },
-          }}
-        >
-          Edit ✏️
-        </Link>
-        <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete</DeleteProduct>
-      </div>
+      {me ? (
+        <div className="buttonList">
+          {canManageProductsRule() ? (
+            <Link
+              href={{
+                pathname: 'update',
+                query: {
+                  id: product.id,
+                },
+              }}
+            >
+              Edit ✏️
+            </Link>
+          ) : null}
+          <AddToCart id={product.id} />
+          {canManageProductsRule() ? (
+            <DeleteProduct id={product.id}>Delete</DeleteProduct>
+          ) : null}
+        </div>
+      ) : null}
     </ItemStyles>
   );
 }
