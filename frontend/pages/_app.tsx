@@ -12,7 +12,7 @@ import { useApollo } from '../lib/apolloClient';
 import '../components/styles/nprogress.css';
 import { CartStateProvider } from '../lib/cartState';
 
-const theme: DefaultTheme = {
+export const theme: DefaultTheme = {
   colors: {
     red: '#ff0000',
     black: '#393939',
