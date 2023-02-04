@@ -56,7 +56,7 @@ export default function SingleProduct({ id }: ISingleProductProps) {
   const { Product } = data;
 
   return (
-    <ProductStyles>
+    <ProductStyles data-testid="singleProduct">
       <Head>
         <title>{`Sick Fits | ${Product.name}`}</title>
       </Head>

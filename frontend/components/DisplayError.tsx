@@ -21,8 +21,8 @@ const DisplayError = ({ error }: { error: ApolloError }) => {
   if (!error || !error.message) return null;
 
   return (
-    <ErrorStyles>
-      <p data-test="graphql-error">
+    <ErrorStyles data-testid="graphqlError">
+      <p>
         <strong>Shoot!</strong>
         {error.message.replace('GraphQL error: ', '')}
       </p>
