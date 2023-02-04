@@ -27,4 +27,11 @@ describe('<Product />', () => {
 
         expect(container).toMatchSnapshot();
     })
+    it('renders the image properly', () => {
+        const {container, debug} = render(<MockedProvider><ThemeProvider theme={theme}><Product product={product} /></ThemeProvider></MockedProvider>)
+
+        // grab the image
+        const img = screen.getByAltText(product.name)
+        expect(img).toBeInTheDocument();
+    })
 })
