@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Nav /> Renders a full nav when signed in 1`] = `
+<div>
+  <ul
+    class="sc-dda22a15-0 iQDszn"
+  >
+    <a
+      href="/products"
+    >
+      PRODUCTS
+    </a>
+    <a
+      href="/sell"
+    >
+      SELL
+    </a>
+    <a
+      href="/orders"
+    >
+      ORDERS
+    </a>
+    <a
+      href="/account"
+    >
+      ACCOUNT
+    </a>
+    <button
+      type="button"
+    >
+      Sign Out
+    </button>
+    <button
+      type="button"
+    >
+      My Cart
+       
+      <span
+        class="sc-9b1afd6b-1 ZLHoM"
+      >
+        <div>
+          <div
+            class="sc-9b1afd6b-0 jEceeG count"
+          >
+            0
+          </div>
+        </div>
+      </span>
+    </button>
+  </ul>
+</div>
+`;
+
+exports[`<Nav /> Renders and minimal nav when signed out 1`] = `
+<div>
+  <ul
+    class="sc-dda22a15-0 iQDszn"
+  >
+    <a
+      href="/products"
+    >
+      PRODUCTS
+    </a>
+    <a
+      href="/signin"
+    >
+      Sign In
+    </a>
+  </ul>
+</div>
+`;
