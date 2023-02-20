@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { gql, useMutation } from '@apollo/client';
-import useForm from '../lib/useForm';
-import Form from './styles/Form';
-import DisplayError from './DisplayError';
+import { gql, useMutation } from "@apollo/client";
+import useForm from "../lib/useForm";
+import Form from "./styles/Form";
+import DisplayError from "./DisplayError";
 
-const SIGN_UP_MUTATION = gql`
+export const SIGN_UP_MUTATION = gql`
   mutation CreateUser($name: String!, $email: String!, $password: String!) {
     createUser(data: { name: $name, email: $email, password: $password }) {
       id
@@ -18,9 +18,9 @@ const SIGN_UP_MUTATION = gql`
 
 export default function SignUp() {
   const { inputs, handleChange, resetForm } = useForm({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
   const [signup, { data, error }] = useMutation(SIGN_UP_MUTATION, {
     variables: inputs,
@@ -76,7 +76,7 @@ export default function SignUp() {
               onChange={handleChange}
             />
           </label>
-          <button type="submit">Sign In!</button>
+          <button type="submit">Sign Up!</button>
         </fieldset>
       )}
     </Form>
