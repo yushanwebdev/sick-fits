@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { gql, useMutation } from '@apollo/client';
-import useForm from '../lib/useForm';
-import Form from './styles/Form';
-import DisplayError from './DisplayError';
+import { gql, useMutation } from "@apollo/client";
+import useForm from "../lib/useForm";
+import Form from "./styles/Form";
+import DisplayError from "./DisplayError";
 
-const REQUEST_RESET_MUTATION = gql`
+export const REQUEST_RESET_MUTATION = gql`
   mutation SendPasswordResetRequest($email: String!) {
     sendUserPasswordResetLink(email: $email) {
       code
@@ -17,7 +17,7 @@ const REQUEST_RESET_MUTATION = gql`
 
 export default function RequestReset() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
+    email: "",
   });
   const [signup, { data, error, loading }] = useMutation(
     REQUEST_RESET_MUTATION,
@@ -54,7 +54,7 @@ export default function RequestReset() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign In!</button>
+        <button type="submit">Request Reset!</button>
       </fieldset>
     </Form>
   );
