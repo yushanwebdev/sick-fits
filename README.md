@@ -1,5 +1,8 @@
 # Sick Fits
 
+<img width="1440" alt="Screenshot 2023-02-26 at 13 18 02" src="https://user-images.githubusercontent.com/25406148/221398636-8f31f537-4955-4705-b389-decfffc13245.png">
+
+
 A Full Stack online clothing store complete with real credit checkout. Users can search, sell, add to cart and checkout their favourite items.
 
 ## Covered Concepts
