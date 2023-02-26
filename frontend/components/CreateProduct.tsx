@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { gql, useMutation } from '@apollo/client';
-import { useRouter } from 'next/router';
-import useForm from '../lib/useForm';
-import DisplayError from './DisplayError';
-import Form from './styles/Form';
+import { gql, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import useForm from "../lib/useForm";
+import DisplayError from "./DisplayError";
+import Form from "./styles/Form";
 
-const CREATE_PRODUCT_MUTATION = gql`
+export const CREATE_PRODUCT_MUTATION = gql`
   mutation CreateProduct(
     # Which variables are getting passed in? And what types are they
     $name: String!
@@ -40,10 +40,10 @@ export default function CreateProduct() {
     price: number;
     description: string;
   }>({
-    image: '',
-    name: 'Nice Shoes',
-    price: 34234,
-    description: 'These are the best shoes!',
+    image: "",
+    name: "",
+    price: 0,
+    description: "",
   });
   const [createProduct, { loading, error }] = useMutation(
     CREATE_PRODUCT_MUTATION,
@@ -67,7 +67,7 @@ export default function CreateProduct() {
             pathname: `/product/${res.data.createProduct.id}`,
           });
         } catch (errorRequest) {
-          console.error('error', (errorRequest as Error).message);
+          console.error("error", (errorRequest as Error).message);
         }
       }}
     >
