@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { gql, useMutation, useQuery } from '@apollo/client';
-import { useEffect } from 'react';
-import useForm from '../lib/useForm';
-import DisplayError from './DisplayError';
-import { SINGLE_ITEM_QUERY } from './SingleProduct';
-import Form from './styles/Form';
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { useEffect } from "react";
+import useForm from "../lib/useForm";
+import DisplayError from "./DisplayError";
+import { SINGLE_ITEM_QUERY } from "./SingleProduct";
+import Form from "./styles/Form";
 
 interface IUpdateProductProps {
   id: string;
@@ -51,9 +48,9 @@ export default function UpdateProduct({ id }: IUpdateProductProps) {
     price: number;
     description: string;
   }>({
-    name: '',
+    name: "",
     price: 0,
-    description: '',
+    description: "",
   });
 
   useEffect(() => {
@@ -78,7 +75,7 @@ export default function UpdateProduct({ id }: IUpdateProductProps) {
             },
           });
         } catch (errorRequest) {
-          console.error('error', (errorRequest as Error).message);
+          console.error("error", (errorRequest as Error).message);
         }
       }}
     >

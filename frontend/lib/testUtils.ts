@@ -69,29 +69,6 @@ const fakeCartItem = (overrides?: Object) => ({
   ...overrides,
 });
 
-// Fake LocalStorage
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key) {
-    return this.store[key] || null;
-  }
-
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-
-  removeItem(key) {
-    delete this.store[key];
-  }
-}
-
 function makePaginationMocksFor(length) {
   return [
     {
@@ -116,7 +93,6 @@ function makePaginationMocksFor(length) {
 
 export {
   makePaginationMocksFor,
-  LocalStorageMock,
   fakeItem,
   fakeUser,
   fakeCartItem,

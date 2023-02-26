@@ -1,17 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import styled from 'styled-components';
-import calcTotalPrice from '../lib/calcTotalPrice';
-import { useCart } from '../lib/cartState';
-import formatMoney from '../lib/formatMoney';
-import { useUser } from '../lib/useUser';
-import Checkout from './Checkout';
-import RemoveFromCart from './RemoveFromCart';
-import CartStyles from './styles/CartStyles';
-import CloseButton from './styles/CloseButton';
-import Supreme from './styles/Supreme';
+import styled from "styled-components";
+import calcTotalPrice from "../lib/calcTotalPrice";
+import { useCart } from "../lib/cartState";
+import formatMoney from "../lib/formatMoney";
+import { useUser } from "../lib/useUser";
+import Checkout from "./Checkout";
+import RemoveFromCart from "./RemoveFromCart";
+import CartStyles from "./styles/CartStyles";
+import CloseButton from "./styles/CloseButton";
+import Supreme from "./styles/Supreme";
 
 interface CartItemProps {
   cartItem: {
@@ -56,7 +52,7 @@ function CartItem({ cartItem }: CartItemProps) {
       <div>
         <h3>{product.name}</h3>
         <p>
-          {formatMoney(product.price * cartItem.quantity)} -{' '}
+          {formatMoney(product.price * cartItem.quantity)} -{" "}
           <em>
             {cartItem.quantity} &times; {formatMoney(product.price)} each
           </em>
@@ -76,7 +72,7 @@ export default function Cart() {
   return (
     <CartStyles open={cartOpen}>
       <header>
-        <Supreme>{me.name}'s Cart</Supreme>
+        <Supreme>{me.name}&apos;s Cart</Supreme>
         <CloseButton type="button" onClick={closeCart}>
           &times;
         </CloseButton>

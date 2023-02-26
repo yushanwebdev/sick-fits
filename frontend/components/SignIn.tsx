@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { gql, useMutation } from '@apollo/client';
-import useForm from '../lib/useForm';
-import { CURRENT_USER_QUERY } from '../lib/useUser';
-import Form from './styles/Form';
-import DisplayError from './DisplayError';
+import { gql, useMutation } from "@apollo/client";
+import useForm from "../lib/useForm";
+import { CURRENT_USER_QUERY } from "../lib/useUser";
+import Form from "./styles/Form";
+import DisplayError from "./DisplayError";
 
 const SIGN_IN_MUTATION = gql`
   mutation AuthenticateUser($email: String!, $password: String!) {
@@ -29,8 +26,8 @@ const SIGN_IN_MUTATION = gql`
 
 export default function SignIn() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [signin, { data }] = useMutation(SIGN_IN_MUTATION, {
     variables: inputs,
@@ -40,7 +37,7 @@ export default function SignIn() {
 
   const error =
     data?.authenticateUserWithPassword.__typename ===
-    'UserAuthenticationWithPasswordFailure'
+    "UserAuthenticationWithPasswordFailure"
       ? data?.authenticateUserWithPassword
       : undefined;
 

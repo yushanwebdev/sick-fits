@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useRouter } from 'next/router';
-import Pagination from '../../components/Pagination';
-import Products, { ALL_PRODUCTS_QUERY } from '../../components/Products';
-import { perPage } from '../../config';
-import { addApolloState, initializeApollo } from '../../lib/apolloClient';
+import { useRouter } from "next/router";
+import Pagination from "../../components/Pagination";
+import Products, { ALL_PRODUCTS_QUERY } from "../../components/Products";
+import { perPage } from "../../config";
+import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 
 export default function ProductsPage() {
   const { query } = useRouter();

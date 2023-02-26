@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { gql, useMutation } from '@apollo/client';
-import useForm from '../lib/useForm';
-import Form from './styles/Form';
-import DisplayError from './DisplayError';
+import { gql, useMutation } from "@apollo/client";
+import useForm from "../lib/useForm";
+import Form from "./styles/Form";
+import DisplayError from "./DisplayError";
 
 interface IResetFormProps {
   token: string;
@@ -25,8 +22,8 @@ const RESET_PASSWORD = gql`
 
 export default function ResetForm({ token }: IResetFormProps) {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     token,
   });
   const [reset, { data, error }] = useMutation(RESET_PASSWORD, {

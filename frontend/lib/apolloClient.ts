@@ -1,21 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/naming-convention */
 // TODO: Fix the type issues
-import { ApolloClient, from, InMemoryCache } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
-import { createUploadLink } from 'apollo-upload-client';
-import merge from 'deepmerge';
-import isEqual from 'lodash/isEqual';
-import { useMemo } from 'react';
-import { endpoint, prodEndpoint } from '../config';
-import paginationField from './paginationField';
+import { ApolloClient, from, InMemoryCache } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from "apollo-upload-client";
+import merge from "deepmerge";
+import isEqual from "lodash/isEqual";
+import { useMemo } from "react";
+import { endpoint, prodEndpoint } from "../config";
+import paginationField from "./paginationField";
 
-export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
+export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
 let apolloClient;
 
@@ -33,15 +26,15 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint, // Server URL (must be absolute)
+  uri: process.env.NODE_ENV === "development" ? endpoint : prodEndpoint, // Server URL (must be absolute)
   fetchOptions: {
-    credentials: 'include', // To send the Cookie that stored in the Browser
+    credentials: "include", // To send the Cookie that stored in the Browser
   },
 });
 
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
+    ssrMode: typeof window === "undefined",
     link: from([errorLink, uploadLink]),
     cache: new InMemoryCache({
       typePolicies: {
@@ -80,7 +73,7 @@ export function initializeApollo(initialState = null) {
     _apolloClient.cache.restore(data);
   }
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient;
+  if (typeof window === "undefined") return _apolloClient;
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;
 

@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { ALL_PRODUCTS_QUERY } from '../components/Products';
-import { perPage } from '../config';
-import { addApolloState, initializeApollo } from '../lib/apolloClient';
-import { CURRENT_USER_QUERY } from '../lib/useUser';
-import ProductsPage from './products';
+import { ALL_PRODUCTS_QUERY } from "../components/Products";
+import { perPage } from "../config";
+import { addApolloState, initializeApollo } from "../lib/apolloClient";
+import { CURRENT_USER_QUERY } from "../lib/useUser";
+import ProductsPage from "./products";
 
 export async function getServerSideProps() {
   try {

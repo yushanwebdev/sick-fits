@@ -1,18 +1,11 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { gql, useQuery } from '@apollo/client';
-import Head from 'next/head';
-import Link from 'next/link';
-import styled from 'styled-components';
-import DisplayError from '../components/DisplayError';
-import PleaseSignIn from '../components/PleaseSignIn';
-import OrderItemStyles from '../components/styles/OrderItemStyles';
-import formatMoney from '../lib/formatMoney';
+import { gql, useQuery } from "@apollo/client";
+import Head from "next/head";
+import Link from "next/link";
+import styled from "styled-components";
+import DisplayError from "../components/DisplayError";
+import PleaseSignIn from "../components/PleaseSignIn";
+import OrderItemStyles from "../components/styles/OrderItemStyles";
+import formatMoney from "../lib/formatMoney";
 
 const USER_ORDERS_QUERY = gql`
   query UserOrdersQuery {
@@ -72,16 +65,16 @@ export default function Orders() {
           <h2>You have {allOrders.length} orders!</h2>
           <OrderUlStyles>
             {allOrders.map((order) => (
-              <OrderItemStyles>
+              <OrderItemStyles key={order.id}>
                 <Link href={`/order/${order.id}`}>
                   <div className="order-meta">
                     <p>
                       {countItemsInAnOrder(order)} Item
-                      {countItemsInAnOrder(order) > 1 ? 's' : ''}
+                      {countItemsInAnOrder(order) > 1 ? "s" : ""}
                     </p>
                     <p>
                       {order.items.length} Product
-                      {order.items.length > 1 ? 's' : ''}
+                      {order.items.length > 1 ? "s" : ""}
                     </p>
                     <p>{formatMoney(order.total)}</p>
                   </div>

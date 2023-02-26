@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation } from "@apollo/client";
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DeleteProduct($id: ID!) {
@@ -32,7 +30,7 @@ export default function DeleteProduct({
       type="button"
       onClick={() => {
         // eslint-disable-next-line no-restricted-globals
-        if (confirm('Are you sure you want to delete this item?')) {
+        if (confirm("Are you sure you want to delete this item?")) {
           // go ahead and delete it
           deleteProduct().catch((err) => alert((err as Error).message));
         }

@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { gql, useQuery } from '@apollo/client';
-import Head from 'next/head';
-import styled from 'styled-components';
-import DisplayError from './DisplayError';
+import { gql, useQuery } from "@apollo/client";
+import Head from "next/head";
+import styled from "styled-components";
+import DisplayError from "./DisplayError";
 
 interface ISingleProductProps {
   id: string;

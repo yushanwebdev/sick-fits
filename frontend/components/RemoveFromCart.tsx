@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { gql, useMutation } from '@apollo/client';
-import styled from 'styled-components';
+import { gql, useMutation } from "@apollo/client";
+import styled from "styled-components";
 
 interface IRemoveFromCartProps {
   id: string;
@@ -25,7 +24,6 @@ const REMOVE_FROM_CART_MUTATION = gql`
 `;
 
 function update(cache, payload) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   cache.evict(cache.identify(payload.data.deleteCartItem));
 }
 
@@ -35,7 +33,7 @@ export default function RemoveFromCart({ id }: IRemoveFromCartProps) {
     update,
     optimisticResponse: {
       deleteCartItem: {
-        __typename: 'CartItem',
+        __typename: "CartItem",
         id,
       },
     },

@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { gql, useQuery } from '@apollo/client';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import DisplayError from '../../components/DisplayError';
-import OrderStyles from '../../components/styles/OrderStyles';
-import formatMoney from '../../lib/formatMoney';
+import { gql, useQuery } from "@apollo/client";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import DisplayError from "../../components/DisplayError";
+import OrderStyles from "../../components/styles/OrderStyles";
+import formatMoney from "../../lib/formatMoney";
 
 const SINGLE_ORDER_QUERY = gql`
   query SingleOrderQuery($id: ID!) {

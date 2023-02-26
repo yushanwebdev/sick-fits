@@ -1,14 +1,6 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/default-param-last */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable default-param-last */
-import { PAGINATION_QUERY } from '../components/Pagination';
+import { PAGINATION_QUERY } from "../components/Pagination";
 
 export default function paginationField() {
   return {

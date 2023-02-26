@@ -1,15 +1,12 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import Link from 'next/link';
-import formatMoney from '../lib/formatMoney';
-import { useUser } from '../lib/useUser';
-import { IProduct } from '../types';
-import AddToCart from './AddToCart';
-import DeleteProduct from './DeleteProduct';
-import ItemStyles from './styles/ItemStyles';
-import PriceTag from './styles/PriceTag';
-import TitleStyles from './styles/TitleStyles';
+import Link from "next/link";
+import formatMoney from "../lib/formatMoney";
+import { useUser } from "../lib/useUser";
+import { IProduct } from "../types";
+import AddToCart from "./AddToCart";
+import DeleteProduct from "./DeleteProduct";
+import ItemStyles from "./styles/ItemStyles";
+import PriceTag from "./styles/PriceTag";
+import TitleStyles from "./styles/TitleStyles";
 
 interface IProductProps {
   product: IProduct;
@@ -40,7 +37,9 @@ export default function Product({ product }: IProductProps) {
         alt={product.name}
       />
       <TitleStyles>
-        <Link href={`/product/${product.id}`}>{product.name}</Link>
+        <Link href={`/product/${product.id}`} role="link">
+          {product.name}
+        </Link>
       </TitleStyles>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
@@ -49,7 +48,7 @@ export default function Product({ product }: IProductProps) {
           {canManageProductsRule() ? (
             <Link
               href={{
-                pathname: 'update',
+                pathname: "update",
                 query: {
                   id: product.id,
                 },

@@ -1,7 +1,6 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { before } from "lodash";
 import { ThemeProvider } from "styled-components";
-import wait from "waait";
 import CartCount from "../components/CartCount";
 import { theme } from "../pages/_app";
 

@@ -1,22 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation } from "@apollo/client";
 import {
   CardElement,
   Elements,
   useElements,
   useStripe,
-} from '@stripe/react-stripe-js';
-import { loadStripe, StripeError } from '@stripe/stripe-js';
-import { useRouter } from 'next/router';
-import nProgress from 'nprogress';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { useCart } from '../lib/cartState';
-import { CURRENT_USER_QUERY } from '../lib/useUser';
-import SickButton from './styles/SickButton';
+} from "@stripe/react-stripe-js";
+import { loadStripe, StripeError } from "@stripe/stripe-js";
+import { useRouter } from "next/router";
+import nProgress from "nprogress";
+import { useState } from "react";
+import styled from "styled-components";
+import { useCart } from "../lib/cartState";
+import { CURRENT_USER_QUERY } from "../lib/useUser";
+import SickButton from "./styles/SickButton";
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
@@ -65,13 +61,13 @@ function CheckoutForm() {
     // 1. Stop the form from submitting & turn the loader on
     e.preventDefault();
     setLoading(true);
-    console.log('We gotta to do some work...');
+    console.log("We gotta to do some work...");
     // 2. Start the page transition
     nProgress.start();
     // 3. Create the payment method via stripe (Token comes back here if successful)
     const { error: stripeError, paymentMethod } =
       await stripe.createPaymentMethod({
-        type: 'card',
+        type: "card",
         card: elements.getElement(CardElement),
       });
 
@@ -82,16 +78,16 @@ function CheckoutForm() {
       return; // stops the checkout from happening
     }
     // 5. Send the token from step 3 to our keystone server, via a custom mutation
-    console.log('paymentMethod', paymentMethod);
+    console.log("paymentMethod", paymentMethod);
     const order = await checkout({
       variables: {
         token: paymentMethod.id,
       },
     });
-    console.log('Finished with the order!!', order);
+    console.log("Finished with the order!!", order);
     // 6. Change the page to view the order
     router.push({
-      pathname: '/order/[id]',
+      pathname: "/order/[id]",
       query: {
         id: order.data.checkout.id,
       },
@@ -109,7 +105,7 @@ function CheckoutForm() {
       {error && (
         <p
           style={{
-            fontSize: '1.2rem',
+            fontSize: "1.2rem",
           }}
         >
           {error.message}
@@ -118,7 +114,7 @@ function CheckoutForm() {
       {graphQLError && (
         <p
           style={{
-            fontSize: '1.2rem',
+            fontSize: "1.2rem",
           }}
         >
           {graphQLError.message}

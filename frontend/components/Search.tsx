@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { gql, useLazyQuery } from '@apollo/client';
-import { resetIdCounter, useCombobox } from 'downshift';
-import debounce from 'lodash.debounce';
-import { useRouter } from 'next/router';
-import { DropDown, DropDownItem, SearchStyles } from './styles/Dropdown';
+import { gql, useLazyQuery } from "@apollo/client";
+import { resetIdCounter, useCombobox } from "downshift";
+import debounce from "lodash.debounce";
+import { useRouter } from "next/router";
+import { DropDown, DropDownItem, SearchStyles } from "./styles/Dropdown";
 
 const SEARCH_PRODUCTS_QUERY = gql`
   query SearchProducts($searchTerm: String!) {
@@ -34,7 +29,7 @@ const SEARCH_PRODUCTS_QUERY = gql`
 export default function Search() {
   const router = useRouter();
   const [findItems, { loading, data }] = useLazyQuery(SEARCH_PRODUCTS_QUERY, {
-    fetchPolicy: 'no-cache',
+    fetchPolicy: "no-cache",
   });
 
   const items = data?.allProducts || [];
@@ -51,7 +46,7 @@ export default function Search() {
   } = useCombobox({
     items,
     onInputValueChange() {
-      console.log('Input changed');
+      console.log("Input changed");
       findItemsButChill({
         variables: {
           searchTerm: inputValue,
@@ -64,7 +59,7 @@ export default function Search() {
         pathname: `/product/${selectedItem.id}`,
       });
     },
-    itemToString: () => '',
+    itemToString: () => "",
   });
 
   return (
@@ -72,10 +67,10 @@ export default function Search() {
       <div>
         <input
           {...getInputProps({
-            type: 'search',
-            placeholder: 'Search for an Item',
-            id: 'search',
-            className: loading ? 'loading' : '',
+            type: "search",
+            placeholder: "Search for an Item",
+            id: "search",
+            className: loading ? "loading" : "",
           })}
         />
       </div>
