@@ -49,6 +49,3 @@ A Full Stack online clothing store complete with real credit checkout. Users can
 ### _Backend_
 
 ### `npm run dev`
-
-## Credits
-Wes Bos - https://wesbos.com
